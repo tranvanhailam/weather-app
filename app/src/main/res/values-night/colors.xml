@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="textTitle">#FFFFFF</color>
+    <color name="text">#FFFFFF</color>
+    <color name="chipBg">#7782A6</color>
+    <color name="cardBg">#A7B4E0</color>
+    <color name="textCard">#FFFFFF</color>
+
+
+    <color name="cardInputBg">#272F3A</color>
+    <color name="textCardEmphasis">#FFFFFF</color>
+    <color name="bgPrimary">#060D26</color>
+    <color name="cardEmphasisBg">#272F3A</color>
+    <color name="bottomNavBg">#101A39</color>
+    <color name="linkBlue">#A7B4E0</color>
+
+</resources>

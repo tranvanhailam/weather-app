@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.WeatherApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:colorBackground">@color/bgPrimary</item>
+        <item name="colorSurface">@color/cardEmphasisBg</item>
+        <item name="colorOnSurface">@color/textCardEmphasis</item>
+        <item name="colorSurfaceContainer">@color/cardInputBg</item>
+        <item name="colorPrimary">@color/bottomNavBg</item>
+        <item name="colorOnPrimary">@color/linkBlue</item>
+
+
+    </style>
+
+</resources>
+
+<!--     colorPrimary: màu chủ đạo của ứng dụng (nút chính, thanh công cụ, v.v.) -->
+<!--     colorOnPrimary: màu chữ/icon hiển thị trên nền colorPrimary -->
+<!--     colorSurface: nền của card, dialog, bottom sheet... -->
+<!--     colorOnBackground: màu chữ/icon hiển thị trên nền tổng thể (background) -->
+<!--     colorOnSurface: màu chữ của card -->
+<!--     colorSurfaceContainer: nền cho TextField, Card nhỏ, Button textfield mode filled, v.v. -->

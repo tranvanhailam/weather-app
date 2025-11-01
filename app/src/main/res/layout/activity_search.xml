@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/android:colorBackground">
+
+    <!-- Nội dung cuộn dọc -->
+    <ScrollView
+        android:id="@+id/scrollContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomNav"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="24dp">
+
+            <!-- Tiêu đề -->
+            <TextView
+                android:id="@+id/tvPickTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pick a location"
+                android:textColor="@color/textTitle"
+                android:layout_gravity="center_horizontal"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:layout_marginTop="8dp" />
+
+            <TextView
+                android:id="@+id/tvPickSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Type the area or city you want to know the detailed weather information at this time."
+                android:textColor="@color/text"
+                android:textSize="14sp"
+                android:lineSpacingExtra="2dp"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:paddingHorizontal="24dp"
+                />
+
+            <!-- Thanh tìm kiếm + nút -->
+            <LinearLayout
+                android:id="@+id/searchRow"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="16dp">
+
+                <EditText
+                    android:id="@+id/edtSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:hint="Search"
+                    android:textColor="@color/textTitle"
+                    android:textColorHint="@color/text"
+                    android:paddingHorizontal="16dp"
+                    android:background="@drawable/bg_card_input"
+                    android:ems="10"
+                    android:singleLine="true"
+                    />
+
+                <ImageButton
+                    android:id="@+id/btnLocation"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/bg_card_input"
+                    android:padding="10dp"
+                    android:scaleType="centerInside"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="Pick by location"
+                    android:src="@drawable/ic_location" />
+
+
+
+            </LinearLayout>
+
+            <!-- Lưới thẻ địa điểm -->
+            <GridLayout
+                android:id="@+id/gridLocations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:rowCount="2"
+                android:useDefaultMargins="false"
+                android:layout_marginTop="20dp">
+
+                <!-- Card 1 (đang chọn) -->
+                <LinearLayout
+                    android:id="@+id/cardLoc1"
+                    android:layout_width="0dp"
+                    android:layout_height="210dp"
+                    android:layout_columnWeight="1"
+                    android:layout_rowWeight="1"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/bg_card"
+                    android:elevation="4dp">
+
+                    <TextView
+                        android:id="@+id/tvLoc1Temp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="32c"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="@color/textCard" />
+
+                    <ImageView
+                        android:id="@+id/imgLoc1Icon"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/ic_moon_cloud_fast_wind" />
+
+                    <TextView
+                        android:id="@+id/tvLoc1Condition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cloudy"
+                        android:textColor="@color/textCard"
+                        android:textSize="16sp"
+                        android:layout_marginTop="6dp" />
+
+                    <TextView
+                        android:id="@+id/tvLoc1City"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ilorin, Oyo"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="@color/textCard" />
+                </LinearLayout>
+
+                <!-- Card 2 -->
+                <LinearLayout
+                    android:id="@+id/cardLoc2"
+                    android:layout_width="0dp"
+                    android:layout_height="210dp"
+                    android:layout_columnWeight="1"
+                    android:layout_rowWeight="1"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/bg_card_emphasis"
+                    android:elevation="4dp">
+
+                    <TextView
+                        android:id="@+id/tvLoc2Temp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="28c"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface" />
+
+                    <ImageView
+                        android:id="@+id/imgLoc2Icon"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/ic_moon_cloud_fast_wind" />
+
+                    <TextView
+                        android:id="@+id/tvLoc2Condition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lightning"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="16sp"
+                        android:layout_marginTop="6dp" />
+
+                    <TextView
+                        android:id="@+id/tvLoc2City"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Abuja"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface" />
+                </LinearLayout>
+
+                <!-- Card 3 -->
+                <LinearLayout
+                    android:id="@+id/cardLoc3"
+                    android:layout_width="0dp"
+                    android:layout_height="210dp"
+                    android:layout_columnWeight="1"
+                    android:layout_rowWeight="1"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/bg_card_emphasis"
+                    android:elevation="4dp">
+
+                    <TextView
+                        android:id="@+id/tvLoc3Temp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="24c"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface" />
+
+                    <ImageView
+                        android:id="@+id/imgLoc3Icon"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/ic_moon_cloud_fast_wind" />
+
+                    <TextView
+                        android:id="@+id/tvLoc3Condition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Wind"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="16sp"
+                        android:layout_marginTop="6dp" />
+
+                    <TextView
+                        android:id="@+id/tvLoc3City"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Calabar"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface" />
+                </LinearLayout>
+
+                <!-- Card 4 -->
+                <LinearLayout
+                    android:id="@+id/cardLoc4"
+                    android:layout_width="0dp"
+                    android:layout_height="210dp"
+                    android:layout_columnWeight="1"
+                    android:layout_rowWeight="1"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/bg_card_emphasis"
+                    android:elevation="4dp">
+
+                    <TextView
+                        android:id="@+id/tvLoc4Temp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="20c"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface" />
+
+                    <ImageView
+                        android:id="@+id/imgLoc4Icon"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/ic_moon_cloud_fast_wind" />
+
+                    <TextView
+                        android:id="@+id/tvLoc4Condition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tornado"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="16sp"
+                        android:layout_marginTop="6dp" />
+
+                    <TextView
+                        android:id="@+id/tvLoc4City"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kano"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="?attr/colorOnSurface" />
+                </LinearLayout>
+
+            </GridLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Include bottom navigation -->
+    <include
+        android:id="@+id/bottomNav"
+        layout="@layout/view_bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

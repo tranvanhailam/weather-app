@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>  <!-- tím xám nền -->
+    <color name="textTitle">#FFFFFF</color>
+    <color name="text">#FFFFFF</color>
+    <color name="chipBg">#7782A6</color>
+    <color name="cardBg">#A7B4E0</color>
+    <color name="textCard">#FFFFFF</color>
+
+
+    <color name="cardInputBg">#A7B4E0</color>
+    <color name="textCardEmphasis">#000000</color>
+    <color name="bgPrimary">#7C85A7</color>
+    <color name="cardEmphasisBg">#FFFFFF</color>
+    <color name="bottomNavBg">#A7B4E0</color>
+    <color name="linkBlue">#002688</color>
+
+<!--     <color name="bgPrimaryDark">#060D26</color> -->
+<!--     <color name="cardEmphasisBgDark">#272F3A</color> -->
+<!--     <color name="bottomNavBgDark">#101A39</color> -->
+<!--     <color name="linkBlueDark">#A7B4E0</color> -->
+</resources>
