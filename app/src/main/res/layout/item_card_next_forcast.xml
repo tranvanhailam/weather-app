@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?><!-- res/layout/item_daily_row.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="84dp"
+    android:background="@drawable/bg_card_input"
+    android:elevation="3dp"
+    android:padding="16dp">
+
+    <!-- Cột ngày (trái) -->
+    <LinearLayout
+        android:id="@+id/colDay"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvDayTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tuesday"
+            android:textColor="@color/text"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvDayDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="July 23"
+            android:textColor="@color/text"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- Nhiệt độ (giữa) -->
+    <TextView
+        android:id="@+id/tvDayTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="20c"
+        android:textColor="@color/text"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <!-- Icon (phải) -->
+    <ImageView
+        android:id="@+id/imgDayIcon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_moon_cloud_fast_wind" />
+</RelativeLayout>

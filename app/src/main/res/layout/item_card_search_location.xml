@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llLayoutCardSearchLocation"
+    android:layout_width="0dp"
+    android:layout_height="210dp"
+    android:layout_rowWeight="1"
+    android:layout_columnWeight="1"
+    android:layout_margin="10dp"
+    android:background="@drawable/bg_card"
+    android:elevation="4dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvTempLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="32c"
+        android:textColor="@color/textCard"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imgLoc1Icon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_moon_cloud_fast_wind" />
+
+    <TextView
+        android:id="@+id/tvLoc1Condition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="--"
+        android:textColor="@color/textCard"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvCityLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ilorin, Oyo"
+        android:textColor="@color/textCard"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+</LinearLayout>

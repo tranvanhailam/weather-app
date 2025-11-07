@@ -32,7 +32,7 @@
                 android:textColor="@color/textTitle"
                 android:layout_gravity="center_horizontal"
                 android:textStyle="bold"
-                android:textSize="28sp"
+                android:textSize="30sp"
                 android:layout_marginTop="8dp" />
 
             <TextView
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:text="Manage your app preferences and appearance settings."
                 android:textColor="@color/text"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:lineSpacingExtra="2dp"
                 android:layout_marginTop="6dp"
                 android:gravity="center"

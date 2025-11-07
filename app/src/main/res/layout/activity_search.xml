@@ -32,7 +32,7 @@
                 android:textColor="@color/textTitle"
                 android:layout_gravity="center_horizontal"
                 android:textStyle="bold"
-                android:textSize="28sp"
+                android:textSize="30sp"
                 android:layout_marginTop="8dp" />
 
             <TextView
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:text="Type the area or city you want to know the detailed weather information at this time."
                 android:textColor="@color/text"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:lineSpacingExtra="2dp"
                 android:layout_marginTop="6dp"
                 android:gravity="center"
@@ -69,10 +69,12 @@
                     android:background="@drawable/bg_card_input"
                     android:ems="10"
                     android:singleLine="true"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
                     />
 
                 <ImageButton
-                    android:id="@+id/btnLocation"
+                    android:id="@+id/ibLocation"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
                     android:layout_marginStart="10dp"
@@ -89,7 +91,7 @@
 
             <!-- Lưới thẻ địa điểm -->
             <GridLayout
-                android:id="@+id/gridLocations"
+                android:id="@+id/gLayoutSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:columnCount="2"
@@ -98,200 +100,200 @@
                 android:layout_marginTop="20dp">
 
                 <!-- Card 1 (đang chọn) -->
-                <LinearLayout
-                    android:id="@+id/cardLoc1"
-                    android:layout_width="0dp"
-                    android:layout_height="210dp"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:gravity="center_horizontal"
-                    android:background="@drawable/bg_card"
-                    android:elevation="4dp">
+                <!--                 <LinearLayout -->
+                <!--                     android:id="@+id/llLayoutCardSearchLocation" -->
+                <!--                     android:layout_width="0dp" -->
+                <!--                     android:layout_height="210dp" -->
+                <!--                     android:layout_columnWeight="1" -->
+                <!--                     android:layout_rowWeight="1" -->
+                <!--                     android:layout_margin="10dp" -->
+                <!--                     android:orientation="vertical" -->
+                <!--                     android:padding="16dp" -->
+                <!--                     android:gravity="center_horizontal" -->
+                <!--                     android:background="@drawable/bg_card" -->
+                <!--                     android:elevation="4dp"> -->
 
-                    <TextView
-                        android:id="@+id/tvLoc1Temp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="32c"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:textColor="@color/textCard" />
+                <!--                     <TextView -->
+                <!--                         android:id="@+id/tvTempLocation" -->
+                <!--                         android:layout_width="wrap_content" -->
+                <!--                         android:layout_height="wrap_content" -->
+                <!--                         android:text="&#45;&#45;" -->
+                <!--                         android:textStyle="bold" -->
+                <!--                         android:textSize="20sp" -->
+                <!--                         android:textColor="@color/textCard" /> -->
 
-                    <ImageView
-                        android:id="@+id/imgLoc1Icon"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="8dp"
-                        android:src="@drawable/ic_moon_cloud_fast_wind" />
+                <!--                     <ImageView -->
+                <!--                         android:id="@+id/imgLoc1Icon" -->
+                <!--                         android:layout_width="60dp" -->
+                <!--                         android:layout_height="60dp" -->
+                <!--                         android:layout_marginTop="8dp" -->
+                <!--                         android:src="@drawable/ic_moon_cloud_fast_wind" /> -->
 
-                    <TextView
-                        android:id="@+id/tvLoc1Condition"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cloudy"
-                        android:textColor="@color/textCard"
-                        android:textSize="16sp"
-                        android:layout_marginTop="6dp" />
+                <!--                     <TextView -->
+                <!--                         android:id="@+id/tvLoc1Condition" -->
+                <!--                         android:layout_width="wrap_content" -->
+                <!--                         android:layout_height="wrap_content" -->
+                <!--                         android:text="&#45;&#45;" -->
+                <!--                         android:textColor="@color/textCard" -->
+                <!--                         android:textSize="16sp" -->
+                <!--                         android:layout_marginTop="6dp" /> -->
 
-                    <TextView
-                        android:id="@+id/tvLoc1City"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ilorin, Oyo"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:textColor="@color/textCard" />
-                </LinearLayout>
+                <!--                     <TextView -->
+                <!--                         android:id="@+id/tvCityLocation" -->
+                <!--                         android:layout_width="wrap_content" -->
+                <!--                         android:layout_height="wrap_content" -->
+                <!--                         android:text="&#45;&#45;" -->
+                <!--                         android:textStyle="bold" -->
+                <!--                         android:textSize="20sp" -->
+                <!--                         android:textColor="@color/textCard" /> -->
+                <!--                 </LinearLayout> -->
 
                 <!-- Card 2 -->
-                <LinearLayout
-                    android:id="@+id/cardLoc2"
-                    android:layout_width="0dp"
-                    android:layout_height="210dp"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:gravity="center_horizontal"
-                    android:background="@drawable/bg_card_emphasis"
-                    android:elevation="4dp">
+                <!--                 <LinearLayout -->
+                <!--                     android:id="@+id/llLayoutCardSearchVicinity" -->
+                <!--                     android:layout_width="0dp" -->
+                <!--                     android:layout_height="210dp" -->
+                <!--                     android:layout_columnWeight="1" -->
+                <!--                     android:layout_rowWeight="1" -->
+                <!--                     android:layout_margin="10dp" -->
+                <!--                     android:orientation="vertical" -->
+                <!--                     android:padding="16dp" -->
+                <!--                     android:gravity="center_horizontal" -->
+                <!--                     android:background="@drawable/bg_card_emphasis" -->
+                <!--                     android:elevation="4dp"> -->
 
-                    <TextView
-                        android:id="@+id/tvLoc2Temp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="28c"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:textColor="?attr/colorOnSurface" />
+                <!--                     <TextView -->
+                <!--                         android:id="@+id/tvLoc2Temp" -->
+                <!--                         android:layout_width="wrap_content" -->
+                <!--                         android:layout_height="wrap_content" -->
+                <!--                         android:text="28c" -->
+                <!--                         android:textStyle="bold" -->
+                <!--                         android:textSize="20sp" -->
+                <!--                         android:textColor="?attr/colorOnSurface" /> -->
 
-                    <ImageView
-                        android:id="@+id/imgLoc2Icon"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="8dp"
-                        android:src="@drawable/ic_moon_cloud_fast_wind" />
+                <!--                     <ImageView -->
+                <!--                         android:id="@+id/imgLoc2Icon" -->
+                <!--                         android:layout_width="60dp" -->
+                <!--                         android:layout_height="60dp" -->
+                <!--                         android:layout_marginTop="8dp" -->
+                <!--                         android:src="@drawable/ic_moon_cloud_fast_wind" /> -->
 
-                    <TextView
-                        android:id="@+id/tvLoc2Condition"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Lightning"
-                        android:textColor="?attr/colorOnSurface"
-                        android:textSize="16sp"
-                        android:layout_marginTop="6dp" />
+                <!--                     <TextView -->
+                <!--                         android:id="@+id/tvLoc2Condition" -->
+                <!--                         android:layout_width="wrap_content" -->
+                <!--                         android:layout_height="wrap_content" -->
+                <!--                         android:text="Lightning" -->
+                <!--                         android:textColor="?attr/colorOnSurface" -->
+                <!--                         android:textSize="16sp" -->
+                <!--                         android:layout_marginTop="6dp" /> -->
 
-                    <TextView
-                        android:id="@+id/tvLoc2City"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Abuja"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:textColor="?attr/colorOnSurface" />
-                </LinearLayout>
+                <!--                     <TextView -->
+                <!--                         android:id="@+id/tvLoc2City" -->
+                <!--                         android:layout_width="wrap_content" -->
+                <!--                         android:layout_height="wrap_content" -->
+                <!--                         android:text="Abuja" -->
+                <!--                         android:textStyle="bold" -->
+                <!--                         android:textSize="20sp" -->
+                <!--                         android:textColor="?attr/colorOnSurface" /> -->
+                <!--                 </LinearLayout> -->
 
                 <!-- Card 3 -->
-                <LinearLayout
-                    android:id="@+id/cardLoc3"
-                    android:layout_width="0dp"
-                    android:layout_height="210dp"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:gravity="center_horizontal"
-                    android:background="@drawable/bg_card_emphasis"
-                    android:elevation="4dp">
+                <!--                 <LinearLayout -->
+                <!--                     android:id="@+id/llLayoutCardSearchVicinity" -->
+                <!--                     android:layout_width="0dp" -->
+                <!--                     android:layout_height="210dp" -->
+                <!--                     android:layout_columnWeight="1" -->
+                <!--                     android:layout_rowWeight="1" -->
+                <!--                     android:layout_margin="10dp" -->
+                <!--                     android:orientation="vertical" -->
+                <!--                     android:padding="16dp" -->
+                <!--                     android:gravity="center_horizontal" -->
+                <!--                     android:background="@drawable/bg_card_emphasis" -->
+                <!--                     android:elevation="4dp"> -->
 
-                    <TextView
-                        android:id="@+id/tvLoc3Temp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="24c"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:textColor="?attr/colorOnSurface" />
+                <!--                     <TextView -->
+                <!--                         android:id="@+id/tvLoc3Temp" -->
+                <!--                         android:layout_width="wrap_content" -->
+                <!--                         android:layout_height="wrap_content" -->
+                <!--                         android:text="24c" -->
+                <!--                         android:textStyle="bold" -->
+                <!--                         android:textSize="20sp" -->
+                <!--                         android:textColor="?attr/colorOnSurface" /> -->
 
-                    <ImageView
-                        android:id="@+id/imgLoc3Icon"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="8dp"
-                        android:src="@drawable/ic_moon_cloud_fast_wind" />
+                <!--                     <ImageView -->
+                <!--                         android:id="@+id/imgLoc3Icon" -->
+                <!--                         android:layout_width="60dp" -->
+                <!--                         android:layout_height="60dp" -->
+                <!--                         android:layout_marginTop="8dp" -->
+                <!--                         android:src="@drawable/ic_moon_cloud_fast_wind" /> -->
 
-                    <TextView
-                        android:id="@+id/tvLoc3Condition"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Wind"
-                        android:textColor="?attr/colorOnSurface"
-                        android:textSize="16sp"
-                        android:layout_marginTop="6dp" />
+                <!--                     <TextView -->
+                <!--                         android:id="@+id/tvLoc3Condition" -->
+                <!--                         android:layout_width="wrap_content" -->
+                <!--                         android:layout_height="wrap_content" -->
+                <!--                         android:text="Wind" -->
+                <!--                         android:textColor="?attr/colorOnSurface" -->
+                <!--                         android:textSize="16sp" -->
+                <!--                         android:layout_marginTop="6dp" /> -->
 
-                    <TextView
-                        android:id="@+id/tvLoc3City"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Calabar"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:textColor="?attr/colorOnSurface" />
-                </LinearLayout>
+                <!--                     <TextView -->
+                <!--                         android:id="@+id/tvLoc3City" -->
+                <!--                         android:layout_width="wrap_content" -->
+                <!--                         android:layout_height="wrap_content" -->
+                <!--                         android:text="Calabar" -->
+                <!--                         android:textStyle="bold" -->
+                <!--                         android:textSize="20sp" -->
+                <!--                         android:textColor="?attr/colorOnSurface" /> -->
+                <!--                 </LinearLayout> -->
 
-                <!-- Card 4 -->
-                <LinearLayout
-                    android:id="@+id/cardLoc4"
-                    android:layout_width="0dp"
-                    android:layout_height="210dp"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:gravity="center_horizontal"
-                    android:background="@drawable/bg_card_emphasis"
-                    android:elevation="4dp">
+                <!--                 &lt;!&ndash; Card 4 &ndash;&gt; -->
+                <!--                 <LinearLayout -->
+                <!--                     android:id="@+id/llLayoutCardSearchVicinity" -->
+                <!--                     android:layout_width="0dp" -->
+                <!--                     android:layout_height="210dp" -->
+                <!--                     android:layout_columnWeight="1" -->
+                <!--                     android:layout_rowWeight="1" -->
+                <!--                     android:layout_margin="10dp" -->
+                <!--                     android:orientation="vertical" -->
+                <!--                     android:padding="16dp" -->
+                <!--                     android:gravity="center_horizontal" -->
+                <!--                     android:background="@drawable/bg_card_emphasis" -->
+                <!--                     android:elevation="4dp"> -->
 
-                    <TextView
-                        android:id="@+id/tvLoc4Temp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="20c"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:textColor="?attr/colorOnSurface" />
+                <!--                     <TextView -->
+                <!--                         android:id="@+id/tvLoc4Temp" -->
+                <!--                         android:layout_width="wrap_content" -->
+                <!--                         android:layout_height="wrap_content" -->
+                <!--                         android:text="20c" -->
+                <!--                         android:textStyle="bold" -->
+                <!--                         android:textSize="20sp" -->
+                <!--                         android:textColor="?attr/colorOnSurface" /> -->
 
-                    <ImageView
-                        android:id="@+id/imgLoc4Icon"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="8dp"
-                        android:src="@drawable/ic_moon_cloud_fast_wind" />
+                <!--                     <ImageView -->
+                <!--                         android:id="@+id/imgLoc4Icon" -->
+                <!--                         android:layout_width="60dp" -->
+                <!--                         android:layout_height="60dp" -->
+                <!--                         android:layout_marginTop="8dp" -->
+                <!--                         android:src="@drawable/ic_moon_cloud_fast_wind" /> -->
 
-                    <TextView
-                        android:id="@+id/tvLoc4Condition"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tornado"
-                        android:textColor="?attr/colorOnSurface"
-                        android:textSize="16sp"
-                        android:layout_marginTop="6dp" />
+                <!--                     <TextView -->
+                <!--                         android:id="@+id/tvLoc4Condition" -->
+                <!--                         android:layout_width="wrap_content" -->
+                <!--                         android:layout_height="wrap_content" -->
+                <!--                         android:text="Tornado" -->
+                <!--                         android:textColor="?attr/colorOnSurface" -->
+                <!--                         android:textSize="16sp" -->
+                <!--                         android:layout_marginTop="6dp" /> -->
 
-                    <TextView
-                        android:id="@+id/tvLoc4City"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kano"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:textColor="?attr/colorOnSurface" />
-                </LinearLayout>
+                <!--                     <TextView -->
+                <!--                         android:id="@+id/tvLoc4City" -->
+                <!--                         android:layout_width="wrap_content" -->
+                <!--                         android:layout_height="wrap_content" -->
+                <!--                         android:text="Kano" -->
+                <!--                         android:textStyle="bold" -->
+                <!--                         android:textSize="20sp" -->
+                <!--                         android:textColor="?attr/colorOnSurface" /> -->
+                <!--                 </LinearLayout> -->
 
             </GridLayout>
 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llLayoutItemCardForecastScroll"
+    android:layout_width="200dp"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="10dp"
+    android:background="@drawable/bg_card_emphasis"
+    android:elevation="3dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="14dp">
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_moon_cloud_fast_wind" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvCurrentTimeInCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1:00pm"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvCurrentTempInCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="28c"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

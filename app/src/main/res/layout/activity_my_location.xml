@@ -160,21 +160,21 @@
             android:paddingBottom="6dp">
 
             <TextView
-                android:id="@+id/city"
+                android:id="@+id/tvCity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lagos Nigeria"
+                android:text="--"
                 android:textColor="@color/textTitle"
-                android:textSize="28sp"
+                android:textSize="30sp"
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/date"
+                android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="July 22, 2021"
+                android:text="---"
                 android:textColor="@color/text"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 android:layout_marginTop="4dp"/>
         </LinearLayout>
 
@@ -190,10 +190,10 @@
 
         <!-- Nhiệt độ lớn -->
         <TextView
-            android:id="@+id/bigTemp"
+            android:id="@+id/tvBigTemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="26 c"
+            android:text="--"
             android:textColor="@color/text"
             android:textSize="64sp"
             android:textStyle="bold"
@@ -225,10 +225,10 @@
                     android:textSize="20sp"/>
 
                 <TextView
-                    android:id="@+id/tempSmall"
+                    android:id="@+id/tvSmallTemp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="26c"
+                    android:text="--"
                     android:textColor="@color/text"
                     android:textStyle="bold"
                     android:textSize="20sp"/>
@@ -250,10 +250,10 @@
                     android:textSize="20sp"/>
 
                 <TextView
-                    android:id="@+id/humidity"
+                    android:id="@+id/tvHumidity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="60%"
+                    android:text="--"
                     android:textColor="@color/text"
                     android:textStyle="bold"
                     android:textSize="20sp"/>
@@ -275,10 +275,10 @@
                     android:textSize="20sp"/>
 
                 <TextView
-                    android:id="@+id/wind"
+                    android:id="@+id/tvWind"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10km/h"
+                    android:text="--"
                     android:textColor="@color/text"
                     android:textStyle="bold"
                     android:textSize="20sp"/>
@@ -321,127 +321,130 @@
             android:layout_marginTop="12dp">
 
             <LinearLayout
+                android:id="@+id/llLayoutForecastScroll"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:paddingHorizontal="6dp">
 
-                <!-- Card 1 -->
-                <LinearLayout
-                    android:layout_width="180dp"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@drawable/bg_card"
-                    android:padding="14dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:elevation="2dp"
-                    android:gravity="center_vertical">
+<!--                 &lt;!&ndash; Card 1 &ndash;&gt; -->
+<!--                 <LinearLayout -->
+<!--                     android:layout_width="180dp" -->
+<!--                     android:layout_height="match_parent" -->
+<!--                     android:orientation="horizontal" -->
+<!--                     android:background="@drawable/bg_card" -->
+<!--                     android:padding="14dp" -->
+<!--                     android:layout_marginHorizontal="10dp" -->
+<!--                     android:elevation="2dp" -->
+<!--                     android:gravity="center_vertical"> -->
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/ic_moon_cloud_fast_wind"
-                        android:layout_marginEnd="10dp"/>
+<!--                     <ImageView -->
+<!--                         android:layout_width="60dp" -->
+<!--                         android:layout_height="60dp" -->
+<!--                         android:src="@drawable/ic_moon_cloud_fast_wind" -->
+<!--                         android:layout_marginEnd="10dp"/> -->
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+<!--                     <LinearLayout -->
+<!--                         android:layout_width="wrap_content" -->
+<!--                         android:layout_height="wrap_content" -->
+<!--                         android:orientation="vertical"> -->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="10:00am"
-                            android:textColor="@color/textCard"
-                            android:textSize="20sp"/>
+<!--                         <TextView -->
+<!--                             android:id="@+id/tvCurrentTimeInCard" -->
+<!--                             android:layout_width="wrap_content" -->
+<!--                             android:layout_height="wrap_content" -->
+<!--                             android:text="10:00am" -->
+<!--                             android:textColor="@color/textCard" -->
+<!--                             android:textSize="20sp"/> -->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="24c"
-                            android:textColor="@color/textCard"
-                            android:textSize="20sp"
-                            android:textStyle="bold"/>
-                    </LinearLayout>
-                </LinearLayout>
+<!--                         <TextView -->
+<!--                             android:id="@+id/tvCurrentTempInCard" -->
+<!--                             android:layout_width="wrap_content" -->
+<!--                             android:layout_height="wrap_content" -->
+<!--                             android:text="24c" -->
+<!--                             android:textColor="@color/textCard" -->
+<!--                             android:textSize="20sp" -->
+<!--                             android:textStyle="bold"/> -->
+<!--                     </LinearLayout> -->
+<!--                 </LinearLayout> -->
 
-                <!-- Card 2 (nổi bật) -->
-                <LinearLayout
-                    android:layout_width="200dp"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@drawable/bg_card_emphasis"
-                    android:padding="14dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:elevation="3dp"
-                    android:gravity="center_vertical">
+<!--                 &lt;!&ndash; Card 2 (nổi bật) &ndash;&gt; -->
+<!--                 <LinearLayout -->
+<!--                     android:layout_width="200dp" -->
+<!--                     android:layout_height="match_parent" -->
+<!--                     android:orientation="horizontal" -->
+<!--                     android:background="@drawable/bg_card_emphasis" -->
+<!--                     android:padding="14dp" -->
+<!--                     android:layout_marginHorizontal="10dp" -->
+<!--                     android:elevation="3dp" -->
+<!--                     android:gravity="center_vertical"> -->
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/ic_moon_cloud_fast_wind"
-                        android:layout_marginEnd="10dp"/>
+<!--                     <ImageView -->
+<!--                         android:layout_width="60dp" -->
+<!--                         android:layout_height="60dp" -->
+<!--                         android:src="@drawable/ic_moon_cloud_fast_wind" -->
+<!--                         android:layout_marginEnd="10dp"/> -->
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+<!--                     <LinearLayout -->
+<!--                         android:layout_width="wrap_content" -->
+<!--                         android:layout_height="wrap_content" -->
+<!--                         android:orientation="vertical"> -->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="1:00pm"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textSize="20sp"/>
+<!--                         <TextView -->
+<!--                             android:layout_width="wrap_content" -->
+<!--                             android:layout_height="wrap_content" -->
+<!--                             android:text="1:00pm" -->
+<!--                             android:textColor="?attr/colorOnSurface" -->
+<!--                             android:textSize="20sp"/> -->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="28c"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textSize="20sp"
-                            android:textStyle="bold"/>
-                    </LinearLayout>
-                </LinearLayout>
+<!--                         <TextView -->
+<!--                             android:layout_width="wrap_content" -->
+<!--                             android:layout_height="wrap_content" -->
+<!--                             android:text="28c" -->
+<!--                             android:textColor="?attr/colorOnSurface" -->
+<!--                             android:textSize="20sp" -->
+<!--                             android:textStyle="bold"/> -->
+<!--                     </LinearLayout> -->
+<!--                 </LinearLayout> -->
 
-                <!-- Card 3 -->
-                <LinearLayout
-                    android:layout_width="180dp"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@drawable/bg_card"
-                    android:padding="14dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:elevation="2dp"
-                    android:gravity="center_vertical">
+<!--                 &lt;!&ndash; Card 3 &ndash;&gt; -->
+<!--                 <LinearLayout -->
+<!--                     android:layout_width="180dp" -->
+<!--                     android:layout_height="match_parent" -->
+<!--                     android:orientation="horizontal" -->
+<!--                     android:background="@drawable/bg_card" -->
+<!--                     android:padding="14dp" -->
+<!--                     android:layout_marginHorizontal="10dp" -->
+<!--                     android:elevation="2dp" -->
+<!--                     android:gravity="center_vertical"> -->
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/ic_moon_cloud_fast_wind"
-                        android:layout_marginEnd="10dp"/>
+<!--                     <ImageView -->
+<!--                         android:layout_width="60dp" -->
+<!--                         android:layout_height="60dp" -->
+<!--                         android:src="@drawable/ic_moon_cloud_fast_wind" -->
+<!--                         android:layout_marginEnd="10dp"/> -->
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+<!--                     <LinearLayout -->
+<!--                         android:layout_width="wrap_content" -->
+<!--                         android:layout_height="wrap_content" -->
+<!--                         android:orientation="vertical"> -->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="10:00am"
-                            android:textColor="@color/textCard"
-                            android:textSize="20sp"/>
+<!--                         <TextView -->
+<!--                             android:layout_width="wrap_content" -->
+<!--                             android:layout_height="wrap_content" -->
+<!--                             android:text="10:00am" -->
+<!--                             android:textColor="@color/textCard" -->
+<!--                             android:textSize="20sp"/> -->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="24c"
-                            android:textColor="@color/textCard"
-                            android:textSize="20sp"
-                            android:textStyle="bold"/>
-                    </LinearLayout>
-                </LinearLayout>
+<!--                         <TextView -->
+<!--                             android:layout_width="wrap_content" -->
+<!--                             android:layout_height="wrap_content" -->
+<!--                             android:text="24c" -->
+<!--                             android:textColor="@color/textCard" -->
+<!--                             android:textSize="20sp" -->
+<!--                             android:textStyle="bold"/> -->
+<!--                     </LinearLayout> -->
+<!--                 </LinearLayout> -->
 
             </LinearLayout>
 
