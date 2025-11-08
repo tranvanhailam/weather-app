@@ -4,10 +4,12 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -21,6 +23,7 @@ import com.example.weatherapp.R;
 import com.example.weatherapp.api.Client;
 import com.example.weatherapp.helper.BottomNavHelper;
 import com.example.weatherapp.repository.SearchHistoryRepository;
+import com.example.weatherapp.service.WeatherAlertService;
 import com.example.weatherapp.utils.StringUtils;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -44,6 +47,7 @@ public class MyLocationActivity extends AppCompatActivity {
     TextView textViewCity, textViewBigTemp, textViewSmallTemp, textViewHumidity, textViewWind, textViewDate;
     TextView textViewCurrentTimeInCard, textViewCurrentTempInCard;
     LinearLayout linearLayoutForecastScroll;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 100;
 
     SearchHistoryRepository searchHistoryRepository;
     private FusedLocationProviderClient fusedLocationClient;
@@ -101,6 +105,43 @@ public class MyLocationActivity extends AppCompatActivity {
 //                .observe(this, item -> textViewCity.setText(item.getName()));
 
         getCurrentLocationAndLoadData();
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        getWeatherForCurrentLocation();
+    }
+    private void getWeatherForCurrentLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    LOCATION_PERMISSION_REQUEST_CODE
+            );
+            return;
+        }
+
+        //  Lấy vị trí GPS mới nhất thay vì vị trí cache
+        fusedLocationClient.getCurrentLocation(
+                com.google.android.gms.location.Priority.PRIORITY_HIGH_ACCURACY,
+                null
+        ).addOnSuccessListener(this, location -> {
+            if (location != null) {
+                double lat = location.getLatitude();
+                double lon = location.getLongitude();
+
+
+                // Gọi service cảnh báo
+                WeatherAlertService.checkWeatherAndNotify(this, lat, lon);
+            } else {
+                Toast.makeText(this, "Không lấy được vị trí!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    //  Khi quay lại màn hình, tự cập nhật vị trí mới nhất
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getWeatherForCurrentLocation();
     }
 
     // Xử lý kết quả của yêu cầu cấp quyền, chạy sau khi user chọn các lựa chọn trong hộp thoại cấp quyền

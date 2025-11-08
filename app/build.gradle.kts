@@ -55,7 +55,11 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.11.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.11.0")
     implementation ("com.squareup.okhttp3:okhttp:4.12.0")
+    // Google Location Services (để lấy vị trí hiện tại)
+    implementation("com.google.android.gms:play-services-location:21.0.1")
 
+    // Core KTX (bổ trợ cho NotificationCompat và API hiện đại)
+    implementation("androidx.core:core-ktx:1.12.0")
     //Google Play Services Location API.
     implementation ("com.google.android.gms:play-services-location:21.3.0")
 
