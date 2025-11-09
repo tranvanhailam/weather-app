@@ -21,6 +21,7 @@ import com.example.weatherapp.R;
 import com.example.weatherapp.api.Client;
 import com.example.weatherapp.helper.BottomNavHelper;
 import com.example.weatherapp.repository.SearchHistoryRepository;
+import com.example.weatherapp.service.WeatherAlertService;
 import com.example.weatherapp.utils.StringUtils;
 import com.example.weatherapp.utils.WeatherIconMapper;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -148,6 +149,8 @@ public class MyLocationActivity extends AppCompatActivity {
                             String cityName = json.optString("city", "null");
                             loadWeatherForCity(cityName);
                             loadWeatherInCardForCity(cityName);
+                            // Gọi service cảnh báo
+                            WeatherAlertService.checkWeatherAndNotify(MyLocationActivity.this, latitude, longitude);
                         } catch (Exception e) {
                             postError();
                         }
