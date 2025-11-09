@@ -1,6 +1,10 @@
 package com.example.weatherapp.activity;
 
 import android.Manifest;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -25,6 +29,7 @@ import com.example.weatherapp.helper.BottomNavHelper;
 import com.example.weatherapp.repository.SearchHistoryRepository;
 import com.example.weatherapp.service.WeatherAlertService;
 import com.example.weatherapp.utils.StringUtils;
+import com.example.weatherapp.widget.WeatherWidgetProvider;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -271,7 +276,9 @@ public class MyLocationActivity extends AppCompatActivity {
                 int humidity = current.optInt("relative_humidity_2m", -1);
                 double wind = current.optDouble("wind_speed_10m", Double.NaN);
                 String time = current.optString("time", "");
+                saveWeatherToSharedPrefs(cityName, temp);
 
+                updateAllWidgets();
 
                 runOnUiThread(() -> {
                     textViewBigTemp.setText(Double.isNaN(temp) ? "--" : temp + "°C");
@@ -290,7 +297,18 @@ public class MyLocationActivity extends AppCompatActivity {
             }
         });
     }
+    private void updateAllWidgets() {
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
+        ComponentName widgetComponent = new ComponentName(this, WeatherWidgetProvider.class);
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(widgetComponent);
 
+        if (appWidgetIds.length > 0) {
+            Intent intent = new Intent(this, WeatherWidgetProvider.class);
+            intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
+            sendBroadcast(intent);
+        }
+    }
     private void loadWeatherInCardForCity(String cityNameInput) {
         io.execute(() -> {
             try {
@@ -387,5 +405,12 @@ public class MyLocationActivity extends AppCompatActivity {
             textViewWind.setText("--");
         });
     }
-
+    private void saveWeatherToSharedPrefs(String city, double temp) {
+        SharedPreferences prefs = getSharedPreferences("WeatherData", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("city", city);
+        editor.putFloat("temp", (float) temp);
+        editor.putLong("last_update", System.currentTimeMillis());
+        editor.apply();
+    }
 }

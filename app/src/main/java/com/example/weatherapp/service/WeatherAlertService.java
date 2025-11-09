@@ -56,8 +56,6 @@ public class WeatherAlertService {
                 if (alert != null) {
                     sendNotification(context, "Cảnh báo thời tiết", alert);
                 }
-                // ⚡ Test cảnh báo nhanh (bỏ khi deploy thật)
-                sendNotification(context, "Cảnh báo thử nghiệm", "Đây là thông báo test thời tiết!");
 
 
             } catch (Exception e) {
@@ -69,25 +67,25 @@ public class WeatherAlertService {
     private static String getWeatherAlert(int code) {
         switch (code) {
             case 0: case 1:
-                return "☀️ Cảnh báo nắng nóng – tránh hoạt động ngoài trời lâu!";
+                return "☀️ Trời nắng – hạn chế ra ngoài giữa trưa và uống nhiều nước!";
             case 2: case 3:
-                return null; // thời tiết đẹp
+                return null; // Thời tiết đẹp, không cần cảnh báo
             case 45: case 48:
-                return "🌫 Cảnh báo sương mù dày đặc – lái xe cẩn thận!";
+                return "🌫 Sương mù dày – lái xe thận trọng, bật đèn chiếu sáng!";
             case 51: case 53: case 55:
-                return "🌦 Có mưa nhẹ – nhớ mang theo áo mưa!";
+                return "🌦 Mưa nhẹ – mang theo áo mưa, đường trơn trượt cẩn thận!";
             case 61: case 63: case 65:
-                return "☔ Cảnh báo mưa lớn – nguy cơ ngập lụt và sạt lở đất ở vùng đồi núi!";
+                return "☔ Mưa vừa hoặc lớn – nguy cơ ngập úng, đi lại hạn chế vùng thấp!";
             case 71: case 73: case 75: case 77:
-                return "🌨 Cảnh báo tuyết rơi – đường trơn trượt, di chuyển cẩn thận!";
+                return "🌨 Tuyết hoặc mưa đá (ở vùng cao) – đi lại cẩn thận!";
             case 80: case 81: case 82:
-                return "🌬 Cảnh báo mưa rào hoặc gió mạnh – nguy cơ sạt lở đất ở khu vực đồi núi!";
+                return "🌬 Mưa rào kèm gió – nguy cơ cây đổ, sạt lở ở đồi núi!";
             case 85: case 86:
-                return "❄️ Cảnh báo băng giá – chú ý khi đi lại!";
+                return "❄️ Băng giá hoặc sương muối (vùng núi) – hạn chế ra ngoài!";
             case 95: case 96: case 99:
-                return "⚡ Cảnh báo giông bão – có thể xảy ra sạt lở đất ở vùng đồi núi!";
+                return "⚡ Giông bão – nguy cơ lốc, sạt lở, hãy ở nhà và tránh cây cao!";
             default:
-                return null;
+                return null; // Mã khác chưa xác định, không cảnh báo
         }
     }
 

@@ -6,15 +6,13 @@
     android:padding="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/widget_bg">
-
-    <!-- Nhiệt độ -->
+    android:background="#A7B4E0">
     <TextView
         android:id="@+id/tvTemp"
         android:text="--°C"
         android:textSize="36sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
+        android:textColor="#000000"
         android:shadowColor="#55FFFFFF"
         android:shadowDx="1"
         android:shadowDy="1"
@@ -24,24 +22,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <!-- Tên thành phố -->
     <TextView
         android:id="@+id/tvCity"
         android:text="Thành phố"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
+        android:textColor="#000000"
         android:fontFamily="sans-serif"
         android:layout_marginBottom="4dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <!-- Mốc thời gian cập nhật -->
     <TextView
         android:id="@+id/tvUpdated"
-        android:text="Cập nhật: --:--"
+        android:text="Update : --:--"
         android:textSize="12sp"
-        android:textColor="#555555"
+        android:textColor="#888888"
         android:fontFamily="sans-serif-light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
