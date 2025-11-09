@@ -25,6 +25,7 @@ import com.example.weatherapp.entity.DailyRow;
 import com.example.weatherapp.helper.BottomNavHelper;
 import com.example.weatherapp.repository.SearchHistoryRepository;
 import com.example.weatherapp.utils.StringUtils;
+import com.example.weatherapp.utils.WeatherIconMapper;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -173,7 +174,7 @@ public class ForecastActivity extends AppCompatActivity {
                 String forecastUrl = "https://api.open-meteo.com/v1/forecast"
                         + "?latitude=" + latitude
                         + "&longitude=" + longitude
-                        + "&hourly=temperature_2m"
+                        + "&hourly=temperature_2m,weather_code"
                         + "&forecast_days=2"
                         + "&timezone=" + StringUtils.encode(timezone);
 
@@ -188,7 +189,8 @@ public class ForecastActivity extends AppCompatActivity {
 //                String time = hourly_units.optString("time", "");
                 JSONArray times = hourly.optJSONArray("time");
                 JSONArray temps = hourly.optJSONArray("temperature_2m");
-                if (times == null || temps == null) return;
+                JSONArray weatherCodes = hourly.optJSONArray("weather_code");
+                if (times == null || temps == null || weatherCodes == null) return;
 
                 int total = Math.min(times.length(), temps.length());
 
@@ -196,21 +198,15 @@ public class ForecastActivity extends AppCompatActivity {
                 int start = findStartIndex(times);               // Tìm index giờ hiện tại (hoặc giờ đầu tiên >= now)
                 int end = Math.min(start + 24, total);           // lấy 24 giờ kế tiếp
 
-//                LayoutInflater inflater = LayoutInflater.from(this);
-
-
                 runOnUiThread(() -> {
-//                    try {
-//                        textViewDate.setText(StringUtils.formatDateFromIso8601Time(time));
-//                    } catch (ParseException e) {
-//                        throw new RuntimeException(e);
-//                    }
 
                     LayoutInflater inflater = LayoutInflater.from(this);
 
                     for (int i = start; i < end; i++) {
                         String isoTime = times.optString(i, null);
                         double temp = temps.optDouble(i, Double.NaN);
+                        int weatherCode = weatherCodes.optInt(i, -1); // -1 nếu không có
+
                         if (isoTime == null || Double.isNaN(temp)) continue;
 
                         // Lấy giờ từ chuỗi "2025-11-05T19:00"
@@ -228,13 +224,15 @@ public class ForecastActivity extends AppCompatActivity {
 
                         View card = inflater.inflate(layoutRes, linearLayoutForecastScroll, false);
 
+                        boolean isDay = hour < 18 && hour >= 6;
+
                         TextView textViewTime = card.findViewById(R.id.tvCurrentTimeInCard);
                         TextView textViewTemp = card.findViewById(R.id.tvCurrentTempInCard);
-//        ImageView imgIcon = card.findViewById(R.id.imgIcon);
+                        TextView itemIcon = card.findViewById(R.id.itemIcon);
 
                         textViewTime.setText(StringUtils.formatHour24(isoTime));
                         textViewTemp.setText(Math.round(temp) + "°C");
-//        imgIcon.setImageResource(R.drawable.ic_moon_cloud_fast_wind);
+                        itemIcon.setText(WeatherIconMapper.getWiGlyph(weatherCode, isDay));
 
                         linearLayoutForecastScroll.addView(card);
                     }
@@ -277,8 +275,8 @@ public class ForecastActivity extends AppCompatActivity {
                 String forecastUrl = "https://api.open-meteo.com/v1/forecast" +
                         "?latitude=" + latitude +
                         "&longitude=" + longitude +
-                        "&daily=temperature_2m_max,temperature_2m_min,temperature_2m_mean" +
-                        "&forecast_days=5" +
+                        "&daily=temperature_2m_max,temperature_2m_min,weather_code" +
+                        "&forecast_days=7" +
                         "&timezone=" + StringUtils.encode(timezone);
 
                 JSONObject weather = Client.request(forecastUrl); //request
@@ -291,8 +289,9 @@ public class ForecastActivity extends AppCompatActivity {
                 JSONArray times = daily.optJSONArray("time");
                 JSONArray temperature_2m_min = daily.optJSONArray("temperature_2m_min");
                 JSONArray temperature_2m_max = daily.optJSONArray("temperature_2m_max");
+                JSONArray weatherCodes = daily.optJSONArray("weather_code");
 
-                if (times == null || temperature_2m_min == null || temperature_2m_max == null)
+                if (times == null || temperature_2m_min == null || temperature_2m_max == null || weatherCodes == null)
                     return;
 
 
@@ -306,17 +305,17 @@ public class ForecastActivity extends AppCompatActivity {
                         String time = times.optString(i, "");
                         double tempMin = temperature_2m_min.optDouble(i, Double.NaN);
                         double tempMax = temperature_2m_max.optDouble(i, Double.NaN);
+                        int weatherCode = weatherCodes.optInt(i, -1); // -1 nếu không có
 
                         // Chuyển ngày ISO sang định dạng dễ đọc (ví dụ "Tue, Jul 23")
                         String displayDate = StringUtils.formatDateFromIso8601Time2(time);
-
                         String displayDayOfWeek = StringUtils.getDayOfWeekFromIsoDate(time);
 
                         // Gộp nhiệt độ hiển thị, ví dụ: "20° / 30°"
                         String tempDisplay = String.format(Locale.US, "%.0f°C / %.0f°C", tempMin, tempMax);
 
                         // Thêm vào danh sách hiển thị
-                        arrayList.add(new DailyRow(displayDayOfWeek, displayDate, tempDisplay, R.drawable.ic_moon_cloud_fast_wind));
+                        arrayList.add(new DailyRow(displayDayOfWeek, displayDate, tempDisplay, true, weatherCode));
                     }
 
                     DailyAdapter dailyAdapter = new DailyAdapter(ForecastActivity.this, R.layout.item_card_next_forcast, arrayList);

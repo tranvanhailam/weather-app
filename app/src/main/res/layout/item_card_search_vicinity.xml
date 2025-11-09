@@ -21,27 +21,21 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/imgLoc2Icon"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/ic_moon_cloud_fast_wind" />
-
     <TextView
-        android:id="@+id/tvLoc2Condition"
+        android:id="@+id/itemIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:fontFamily="@font/weathericons_regular_webfont"
         android:text="--"
         android:textColor="?attr/colorOnSurface"
-        android:textSize="16sp" />
+        android:textSize="50sp" />
+
 
     <TextView
         android:id="@+id/tvCityVicinity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Abuja"
+        android:text="--"
         android:textColor="?attr/colorOnSurface"
         android:textSize="20sp"
         android:textStyle="bold" />

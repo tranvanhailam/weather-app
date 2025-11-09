@@ -22,6 +22,7 @@ import com.example.weatherapp.api.Client;
 import com.example.weatherapp.helper.BottomNavHelper;
 import com.example.weatherapp.repository.SearchHistoryRepository;
 import com.example.weatherapp.utils.StringUtils;
+import com.example.weatherapp.utils.WeatherIconMapper;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -44,6 +45,7 @@ public class MyLocationActivity extends AppCompatActivity {
     TextView textViewCity, textViewBigTemp, textViewSmallTemp, textViewHumidity, textViewWind, textViewDate;
     TextView textViewCurrentTimeInCard, textViewCurrentTempInCard;
     LinearLayout linearLayoutForecastScroll;
+    TextView mainIcon;
 
     SearchHistoryRepository searchHistoryRepository;
     private FusedLocationProviderClient fusedLocationClient;
@@ -89,6 +91,8 @@ public class MyLocationActivity extends AppCompatActivity {
         textViewCurrentTimeInCard = findViewById(R.id.tvCurrentTimeInCard);
         textViewCurrentTempInCard = findViewById(R.id.tvCurrentTempInCard);
         linearLayoutForecastScroll = findViewById(R.id.llLayoutForecastScroll);
+
+        mainIcon = findViewById(R.id.mainIcon);
 
         searchHistoryRepository= new SearchHistoryRepository(MyLocationActivity.this);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -152,7 +156,7 @@ public class MyLocationActivity extends AppCompatActivity {
 
                 } else {
                     // Display error message if location is null
-                    textViewCity.setText("Unable to get location");
+//                    textViewCity.setText("Unable to get location");
                 }
             }
         });
@@ -216,7 +220,7 @@ public class MyLocationActivity extends AppCompatActivity {
                 String forecastUrl = "https://api.open-meteo.com/v1/forecast"
                         + "?latitude=" + latitude
                         + "&longitude=" + longitude
-                        + "&current=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m"
+                        + "&current=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m,weather_code"
                         + "&timezone=" + StringUtils.encode(timezone);
 
                 JSONObject weather = Client.request(forecastUrl); //request
@@ -230,9 +234,13 @@ public class MyLocationActivity extends AppCompatActivity {
                 int humidity = current.optInt("relative_humidity_2m", -1);
                 double wind = current.optDouble("wind_speed_10m", Double.NaN);
                 String time = current.optString("time", "");
+                int weatherCode = current.optInt("weather_code", -1); // -1 nếu không có
 
 
                 runOnUiThread(() -> {
+                    int hour = Integer.parseInt(time.substring(11, 13));
+                    boolean isDay = hour < 18 && hour >= 6;
+                    mainIcon.setText(WeatherIconMapper.getWiGlyph(weatherCode, isDay));
                     textViewBigTemp.setText(Double.isNaN(temp) ? "--" : temp + "°C");
                     try {
                         textViewDate.setText(StringUtils.formatDateFromIso8601Time(time));
@@ -272,7 +280,7 @@ public class MyLocationActivity extends AppCompatActivity {
                 String forecastUrl = "https://api.open-meteo.com/v1/forecast"
                         + "?latitude=" + latitude
                         + "&longitude=" + longitude
-                        + "&hourly=temperature_2m"
+                        + "&hourly=temperature_2m,weather_code"
                         + "&forecast_days=2"
                         + "&timezone=" + StringUtils.encode(timezone);
 
@@ -285,7 +293,8 @@ public class MyLocationActivity extends AppCompatActivity {
 
                 JSONArray times = hourly.optJSONArray("time");
                 JSONArray temps = hourly.optJSONArray("temperature_2m");
-                if (times == null || temps == null) return;
+                JSONArray weatherCodes = hourly.optJSONArray("weather_code"); // -1 nếu không có
+                if (times == null || temps == null || weatherCodes == null) return;
 
                 int total = Math.min(times.length(), temps.length());
 
@@ -302,6 +311,8 @@ public class MyLocationActivity extends AppCompatActivity {
                     for (int i = start; i < end; i++) {
                         String isoTime = times.optString(i, null);
                         double temp = temps.optDouble(i, Double.NaN);
+                        int weatherCode = weatherCodes.optInt(i, -1); // -1 nếu không có
+
                         if (isoTime == null || Double.isNaN(temp)) continue;
 
                         // Lấy giờ từ chuỗi "2025-11-05T19:00"
@@ -312,6 +323,7 @@ public class MyLocationActivity extends AppCompatActivity {
                             continue; // skip nếu format lạ
                         }
 
+
                         // Chọn layout theo giờ của thẻ
                         int layoutRes = (hour >= 18 || hour < 6)
                                 ? R.layout.item_card_my_location_scroll_dark   // ban đêm
@@ -319,13 +331,15 @@ public class MyLocationActivity extends AppCompatActivity {
 
                         View card = inflater.inflate(layoutRes, linearLayoutForecastScroll, false);
 
+                        boolean isDay = hour < 18 && hour >= 6;
+
                         TextView textViewTime = card.findViewById(R.id.tvCurrentTimeInCard);
                         TextView textViewTemp = card.findViewById(R.id.tvCurrentTempInCard);
-//        ImageView imgIcon = card.findViewById(R.id.imgIcon);
+                        TextView itemIcon = card.findViewById(R.id.itemIcon);
 
                         textViewTime.setText(StringUtils.formatHour24(isoTime));
                         textViewTemp.setText(Math.round(temp) + "°C");
-//        imgIcon.setImageResource(R.drawable.ic_moon_cloud_fast_wind);
+                        itemIcon.setText(WeatherIconMapper.getWiGlyph(weatherCode, isDay));
 
                         linearLayoutForecastScroll.addView(card);
                     }

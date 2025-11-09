@@ -27,6 +27,7 @@ import com.example.weatherapp.api.Client;
 import com.example.weatherapp.helper.BottomNavHelper;
 import com.example.weatherapp.repository.SearchHistoryRepository;
 import com.example.weatherapp.utils.StringUtils;
+import com.example.weatherapp.utils.WeatherIconMapper;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -181,7 +182,7 @@ public class SearchActivity extends AppCompatActivity {
                 String forecastUrl = "https://api.open-meteo.com/v1/forecast"
                         + "?latitude=" + latitude
                         + "&longitude=" + longitude
-                        + "&current=temperature_2m"//,relative_humidity_2m,precipitation,weather_code,wind_speed_10m"
+                        + "&current=temperature_2m,weather_code"//,relative_humidity_2m,precipitation,weather_code,wind_speed_10m"
                         + "&timezone=" + StringUtils.encode(timezone);
 
                 JSONObject weather = Client.request(forecastUrl); //request
@@ -192,9 +193,8 @@ public class SearchActivity extends AppCompatActivity {
                 }
 
                 double temp = current.optDouble("temperature_2m", Double.NaN);
-//                int humidity = current.optInt("relative_humidity_2m", -1);
-//                double wind = current.optDouble("wind_speed_10m", Double.NaN);
-//                String time = current.optString("time", "");
+                int weatherCode = current.optInt("weather_code", -1); // -1 nếu không có
+                String time = current.optString("time", "");
 
 
                 runOnUiThread(() -> {
@@ -202,20 +202,14 @@ public class SearchActivity extends AppCompatActivity {
                     View card = inflater.inflate(R.layout.item_card_search_location, gridLayoutSearch, false);
                     TextView textViewTempLocation = card.findViewById(R.id.tvTempLocation);
                     TextView textViewCityLocation = card.findViewById(R.id.tvCityLocation);
+                    TextView itemIcon = card.findViewById(R.id.itemIcon);
 
+                    int hour = Integer.parseInt(time.substring(11, 13));
+                    boolean isDay = hour < 18 && hour >= 6;
+                    itemIcon.setText(WeatherIconMapper.getWiGlyph(weatherCode, isDay));
                     textViewTempLocation.setText(Double.isNaN(temp) ? "--" : temp + "°C");
                     textViewCityLocation.setText(cityName);
                     gridLayoutSearch.addView(card);
-//                    textViewTempLocation.setText(Double.isNaN(temp) ? "--" : temp + "°C");
-//                    try {
-//                        textViewDate.setText(StringUtils.formatDateFromIso8601Time(time));
-//                    } catch (ParseException e) {
-//                        throw new RuntimeException(e);
-//                    }
-//                    textViewCityLocation.setText(cityName);
-//                    textViewSmallTemp.setText(Double.isNaN(temp) ? "--" : temp + "°C");
-//                    textViewHumidity.setText(humidity < 0 ? "--" : humidity + "%");
-//                    textViewWind.setText(wind < 0 ? "--" : wind + "km/h");
                 });
             } catch (Exception e) {
 //                postError();
@@ -263,46 +257,6 @@ public class SearchActivity extends AppCompatActivity {
                     loadWeatherForCityVicinityInCard(lat, lon, timezone);
                 }
 
-
-//                // ✅ In kết quả ra để kiểm tra
-//                System.out.printf("Original: %.5f, %.5f%n", latitude, longitude);
-//                System.out.printf("North (Bắc): %.5f, %.5f%n", latNorth, lonNorth);
-//                System.out.printf("South (Nam): %.5f, %.5f%n", latSouth, lonSouth);
-//                System.out.printf("East  (Đông): %.5f, %.5f%n", latEast, lonEast);
-//                System.out.printf("West  (Tây): %.5f, %.5f%n", latWest, lonWest);
-
-
-//                String forecastUrl = "https://api.open-meteo.com/v1/forecast"
-//                        + "?latitude=" + latitude
-//                        + "&longitude=" + longitude
-//                        + "&current=temperature_2m"//,relative_humidity_2m,precipitation,weather_code,wind_speed_10m"
-//                        + "&timezone=" + StringUtils.encode(timezone);
-//
-//                JSONObject weather = Client.request(forecastUrl); //request
-//                JSONObject current = weather.optJSONObject("current");
-//                if (current == null) {
-////                    postError();
-//                    return;
-//                }
-//
-//                double temp = current.optDouble("temperature_2m", Double.NaN);
-////                int humidity = current.optInt("relative_humidity_2m", -1);
-////                double wind = current.optDouble("wind_speed_10m", Double.NaN);
-////                String time = current.optString("time", "");
-//
-//
-//                runOnUiThread(() -> {
-//                    textViewTempLocation.setText(Double.isNaN(temp) ? "--" : temp + "°C");
-////                    try {
-////                        textViewDate.setText(StringUtils.formatDateFromIso8601Time(time));
-////                    } catch (ParseException e) {
-////                        throw new RuntimeException(e);
-////                    }
-//                    textViewCityLocation.setText(cityName);
-////                    textViewSmallTemp.setText(Double.isNaN(temp) ? "--" : temp + "°C");
-////                    textViewHumidity.setText(humidity < 0 ? "--" : humidity + "%");
-////                    textViewWind.setText(wind < 0 ? "--" : wind + "km/h");
-//                });
             } catch (Exception e) {
 //                postError();
             }
@@ -323,7 +277,7 @@ public class SearchActivity extends AppCompatActivity {
                 String forecastUrl = "https://api.open-meteo.com/v1/forecast"
                         + "?latitude=" + latitude
                         + "&longitude=" + longitude
-                        + "&current=temperature_2m"//,relative_humidity_2m,precipitation,weather_code,wind_speed_10m"
+                        + "&current=temperature_2m,weather_code"//,relative_humidity_2m,precipitation,weather_code,wind_speed_10m"
                         + "&timezone=auto";//+ StringUtils.encode(timezone);
 
                 JSONObject weather = Client.request(forecastUrl); //request
@@ -333,12 +287,19 @@ public class SearchActivity extends AppCompatActivity {
                 }
 
                 double temp = current.optDouble("temperature_2m", Double.NaN);
+                int weatherCode = current.optInt("weather_code", -1); // -1 nếu không có
+                String time = current.optString("time", "");
 
                 runOnUiThread(() -> {
 
                     View card = inflater.inflate(R.layout.item_card_search_vicinity, gridLayoutSearch, false);
                     TextView textViewTempVicinity = card.findViewById(R.id.tvTempVicinity);
                     TextView textViewCityVicinity = card.findViewById(R.id.tvCityVicinity);
+                    TextView itemIcon = card.findViewById(R.id.itemIcon);
+
+                    int hour = Integer.parseInt(time.substring(11, 13));
+                    boolean isDay = hour < 18 && hour >= 6;
+                    itemIcon.setText(WeatherIconMapper.getWiGlyph(weatherCode, isDay));
 
                     textViewTempVicinity.setText(Double.isNaN(temp) ? "--" : temp + "°C");
                     textViewCityVicinity.setText(cityName);

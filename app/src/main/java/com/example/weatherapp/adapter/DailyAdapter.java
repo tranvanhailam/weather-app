@@ -5,11 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.entity.DailyRow;
+import com.example.weatherapp.utils.WeatherIconMapper;
 
 import java.util.List;
 
@@ -48,12 +48,12 @@ public class DailyAdapter extends BaseAdapter {
         TextView textViewDayTitle = convertView.findViewById(R.id.tvDayTitle);
         TextView textViewDayDate = convertView.findViewById(R.id.tvDayDate);
         TextView textViewDayTemp = convertView.findViewById(R.id.tvDayTemp);
-        ImageView imageViewDayIcon = convertView.findViewById(R.id.imgDayIcon);
+        TextView dayIcon = convertView.findViewById(R.id.dayIcon);
         DailyRow dailyRow = dailyRowList.get(i);
         textViewDayTitle.setText(dailyRow.getTitle());
         textViewDayDate.setText(dailyRow.getDate());
         textViewDayTemp.setText(dailyRow.getTemp());
-        imageViewDayIcon.setImageResource(dailyRow.getIconRes());
+        dayIcon.setText(WeatherIconMapper.getWiGlyph(dailyRow.getWeatherCode(), dailyRow.isDay()));
 
         return convertView;
     }

@@ -25,117 +25,117 @@
 
             <!-- Chip 1 -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:paddingHorizontal="16dp"
-                android:layout_marginEnd="20dp">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_big_rain_drops" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Rain"
-                    android:textSize="14sp"
-                    android:layout_marginTop="6dp"
-                    android:textColor="@android:color/white"/>
-            </LinearLayout>
-
-            <!-- Chip 2 -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:paddingHorizontal="16dp"
-                android:layout_marginEnd="20dp">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_big_snow" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Drizz"
-                    android:textSize="14sp"
-                    android:layout_marginTop="6dp"
-                    android:textColor="@color/text"/>
-            </LinearLayout>
-
-            <!-- Chip 3 -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:paddingHorizontal="16dp"
-                android:layout_marginEnd="20dp">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_zaps" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Thunder"
-                    android:textSize="14sp"
-                    android:layout_marginTop="6dp"
-                    android:textColor="@color/text"/>
-            </LinearLayout>
-
-            <!-- Chip 4 -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:paddingHorizontal="16dp"
-                android:layout_marginEnd="20dp">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_moon_cloud_fast_wind" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Light rain"
-                    android:textSize="14sp"
-                    android:layout_marginTop="6dp"
-                    android:textColor="@color/text"/>
-            </LinearLayout>
-
-            <!-- Chip 5 -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:gravity="center"
                 android:paddingHorizontal="16dp">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_mid_snow_fast_winds" />
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/hou_logo" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Moon cloud"
-                    android:textSize="14sp"
-                    android:layout_marginTop="6dp"
-                    android:textColor="@color/text"/>
+                <!--                 <TextView -->
+                <!--                     android:layout_width="wrap_content" -->
+                <!--                     android:layout_height="wrap_content" -->
+                <!--                     android:layout_marginLeft="10dp" -->
+                <!--                     android:layout_marginTop="3dp" -->
+                <!--                     android:text="HOU" -->
+                <!--                     android:textColor="@android:color/white" -->
+                <!--                     android:textSize="30sp" /> -->
             </LinearLayout>
+
+            <!--             &lt;!&ndash; Chip 2 &ndash;&gt; -->
+            <!--             <LinearLayout -->
+            <!--                 android:layout_width="wrap_content" -->
+            <!--                 android:layout_height="match_parent" -->
+            <!--                 android:orientation="vertical" -->
+            <!--                 android:gravity="center" -->
+            <!--                 android:paddingHorizontal="16dp" -->
+            <!--                 android:layout_marginEnd="20dp"> -->
+
+            <!--                 <ImageView -->
+            <!--                     android:layout_width="60dp" -->
+            <!--                     android:layout_height="60dp" -->
+            <!--                     android:src="@drawable/ic_big_snow" /> -->
+
+            <!--                 <TextView -->
+            <!--                     android:layout_width="wrap_content" -->
+            <!--                     android:layout_height="wrap_content" -->
+            <!--                     android:text="Drizz" -->
+            <!--                     android:textSize="14sp" -->
+            <!--                     android:layout_marginTop="6dp" -->
+            <!--                     android:textColor="@color/text"/> -->
+            <!--             </LinearLayout> -->
+
+            <!--             &lt;!&ndash; Chip 3 &ndash;&gt; -->
+            <!--             <LinearLayout -->
+            <!--                 android:layout_width="wrap_content" -->
+            <!--                 android:layout_height="match_parent" -->
+            <!--                 android:orientation="vertical" -->
+            <!--                 android:gravity="center" -->
+            <!--                 android:paddingHorizontal="16dp" -->
+            <!--                 android:layout_marginEnd="20dp"> -->
+
+            <!--                 <ImageView -->
+            <!--                     android:layout_width="60dp" -->
+            <!--                     android:layout_height="60dp" -->
+            <!--                     android:src="@drawable/ic_zaps" /> -->
+
+            <!--                 <TextView -->
+            <!--                     android:layout_width="wrap_content" -->
+            <!--                     android:layout_height="wrap_content" -->
+            <!--                     android:text="Thunder" -->
+            <!--                     android:textSize="14sp" -->
+            <!--                     android:layout_marginTop="6dp" -->
+            <!--                     android:textColor="@color/text"/> -->
+            <!--             </LinearLayout> -->
+
+            <!--             &lt;!&ndash; Chip 4 &ndash;&gt; -->
+            <!--             <LinearLayout -->
+            <!--                 android:layout_width="wrap_content" -->
+            <!--                 android:layout_height="match_parent" -->
+            <!--                 android:orientation="vertical" -->
+            <!--                 android:gravity="center" -->
+            <!--                 android:paddingHorizontal="16dp" -->
+            <!--                 android:layout_marginEnd="20dp"> -->
+
+            <!--                 <ImageView -->
+            <!--                     android:layout_width="60dp" -->
+            <!--                     android:layout_height="60dp" -->
+            <!--                     android:src="@drawable/ic_moon_cloud_fast_wind" /> -->
+
+            <!--                 <TextView -->
+            <!--                     android:layout_width="wrap_content" -->
+            <!--                     android:layout_height="wrap_content" -->
+            <!--                     android:text="Light rain" -->
+            <!--                     android:textSize="14sp" -->
+            <!--                     android:layout_marginTop="6dp" -->
+            <!--                     android:textColor="@color/text"/> -->
+            <!--             </LinearLayout> -->
+
+            <!--             &lt;!&ndash; Chip 5 &ndash;&gt; -->
+            <!--             <LinearLayout -->
+            <!--                 android:layout_width="wrap_content" -->
+            <!--                 android:layout_height="match_parent" -->
+            <!--                 android:orientation="vertical" -->
+            <!--                 android:gravity="center" -->
+            <!--                 android:paddingHorizontal="16dp"> -->
+
+            <!--                 <ImageView -->
+            <!--                     android:layout_width="60dp" -->
+            <!--                     android:layout_height="60dp" -->
+            <!--                     android:src="@drawable/ic_mid_snow_fast_winds" /> -->
+
+            <!--                 <TextView -->
+            <!--                     android:layout_width="wrap_content" -->
+            <!--                     android:layout_height="wrap_content" -->
+            <!--                     android:text="Moon cloud" -->
+            <!--                     android:textSize="14sp" -->
+            <!--                     android:layout_marginTop="6dp" -->
+            <!--                     android:textColor="@color/text"/> -->
+            <!--             </LinearLayout> -->
 
         </LinearLayout>
     </HorizontalScrollView>
@@ -179,12 +179,15 @@
         </LinearLayout>
 
         <!-- Icon mây mưa lớn -->
-        <ImageView
+        <TextView
             android:id="@+id/mainIcon"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_moon_cloud_fast_wind"
+            android:fontFamily="@font/weathericons_regular_webfont"
+            android:text="--"
+            android:textColor="@color/text"
+            android:textSize="110sp"
             android:layout_marginTop="6dp"
             android:layout_marginBottom="10dp"/>
 
